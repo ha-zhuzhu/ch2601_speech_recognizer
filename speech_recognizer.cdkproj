@@ -2,12 +2,11 @@
 <Project Name="speech_recognizer" Version="1">
   <Description/>
   <MonitorProgress>
-    <FlashOperate>247</FlashOperate>
+    <FlashOperate>267</FlashOperate>
     <DebugLaunch>42</DebugLaunch>
   </MonitorProgress>
   <MergedToYaml>yes</MergedToYaml>
   <Dependencies Name="BuildSet"/>
-  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages</PackPathes>
   <Chip>3878941840279867392</Chip>
   <Platform>3886757103532519424</Platform>
   <Solution>3890462665101291520</Solution>
@@ -268,4 +267,5 @@
     <debugLayout/>
     <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
+  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
 </Project>

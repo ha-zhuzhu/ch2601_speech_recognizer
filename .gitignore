@@ -84,6 +84,8 @@ solutions_cb5654/Makefile
 
 **/__workspace_pack__
 **/Packages
+**/debug_notes
+
 speech_recognizer.cdkws
 speech_recognizer.tags
 speech_recognizer.mk

@@ -1,0 +1,40 @@
+name: transport
+version: v1.0.0
+description: transport
+tag: ""
+keywords: 
+author:
+  name: ""
+license: ""
+homepage: 
+type: common
+depends: 
+depends_forward: 
+yoc_version: 
+hw_info:
+  cpu_id: ""
+  cpu_name: ""
+  vendor_name: ""
+  chip_name: ""
+  board_name: ""
+  ld_script: ""
+  flash_program: ""
+build_config:
+  include:
+    - include
+  internal_include: 
+  cflag: -O0
+  cxxflag: -O0
+  asmflag: ""
+  define: 
+  libs: 
+  libpath: 
+source_file:
+  - src/tls.c
+  - src/transport.c
+  - src/transport_ssl.c
+  - src/transport_tcp.c
+  - src/transport_utils.c
+  - src/transport_ws.c
+def_config: 
+install: 

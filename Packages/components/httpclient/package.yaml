@@ -1,0 +1,40 @@
+name: httpclient
+version: v1.0.0
+description: httpclient
+tag: ""
+keywords: 
+author:
+  name: ""
+license: ""
+homepage: 
+type: common
+depends: 
+depends_forward: 
+yoc_version: 
+hw_info:
+  cpu_id: ""
+  cpu_name: ""
+  vendor_name: ""
+  chip_name: ""
+  board_name: ""
+  ld_script: ""
+  flash_program: ""
+build_config:
+  include:
+    - include
+  internal_include: 
+  cflag: -O0
+  cxxflag: -O0
+  asmflag: ""
+  define: 
+  libs: 
+  libpath: 
+source_file:
+  - src/http_auth.c
+  - src/http_client.c
+  - src/http_header.c
+  - src/http_parser.c
+  - src/http_tls.c
+  - src/http_utils.c
+def_config: 
+install: 

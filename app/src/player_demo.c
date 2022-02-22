@@ -59,6 +59,9 @@ static char ca_crt_rsa[] = {
 static const char *boundary = "----WebKitFormBoundarypNjgoVtFRlzPquKE";
 #define MY_FORMAT "------WebKitFormBoundarypNjgoVtFRlzPquKE\r\nContent-Disposition: %s; name=\"%s\"; filename=\"%s\"\r\nContent-Type: %s\r\n\r\n%s\r\n------WebKitFormBoundarypNjgoVtFRlzPquKE--\r\n"
 
+#define MY_FORMAT_START "------WebKitFormBoundarypNjgoVtFRlzPquKE\r\nContent-Disposition: %s; name=\"%s\"; filename=\"%s\"\r\nContent-Type: %s\r\n\r\n"
+#define MY_FORMAT_END "\r\n------WebKitFormBoundarypNjgoVtFRlzPquKE--\r\n"
+
 static int e_count = 0;
 
 int _http_event_handler(http_client_event_t *evt)
@@ -107,20 +110,41 @@ static void test_post()
     http_client_handle_t client = http_client_init(&config);
     http_client_set_header(client, "Content-Type", "multipart/form-data; boundary=----WebKitFormBoundarypNjgoVtFRlzPquKE");
 
-    const char *post_data_content = "hello, hazhuzhu";
+    // const char *post_data_content = "hello, hazhuzhu";
+    const unsigned char *post_content = _welcome_mp3;
     const char *content_disposition = "form-data";
     const char *name = "file";
     const char *filename = "text1.txt";
-    const char *content_type="application/octet-stream";
+    const char *content_type = "application/octet-stream";
     int boundary_len = strlen(boundary);
-    int post_data_len=strlen(MY_FORMAT)-10+ strlen(content_disposition)+strlen(name)+strlen(filename)+strlen(content_type)+strlen(post_data_content)+1;
-    
-    char *post_data = (char *)malloc(post_data_len + 1);
-    memset(post_data, 0, sizeof(post_data_len));
-    snprintf(post_data,post_data_len,MY_FORMAT,content_disposition,name,filename,content_type,post_data_content);
-    http_client_set_post_field(client, post_data, strlen(post_data));
 
-    http_errors_t err = http_client_perform(client);
+    // int post_data_len=strlen(MY_FORMAT)-10+ strlen(content_disposition)+strlen(name)+strlen(filename)+strlen(content_type)+strlen(post_data_content)+1;
+    // int post_data_len=strlen(MY_FORMAT)-10+ strlen(content_disposition)+strlen(name)+strlen(filename)+strlen(content_type)+_welcome_mp3_len+1;
+    // char *post_data = (char *)malloc(post_data_len + 1);
+    // memset(post_data, 0, sizeof(post_data_len));
+    // snprintf(post_data,post_data_len,MY_FORMAT,content_disposition,name,filename,content_type,post_data_content);
+
+    // 制备开头
+    int post_start_len = strlen(MY_FORMAT_START) - 8 + strlen(content_disposition) + strlen(name) + strlen(filename) + strlen(content_type) + 1;
+    char *post_start = (char *)malloc(post_start_len + 1);
+    memset(post_start, 0, sizeof(post_start_len));
+    snprintf(post_start, post_start_len, MY_FORMAT_START, content_disposition, name, filename, content_type);
+    const char *post_end = MY_FORMAT_END;
+
+    http_client_set_post_len(client, strlen(post_start) + _welcome_mp3_len + strlen(post_end));
+
+    my_post_data_t post_data = {
+        .start = post_start,
+        .end = post_end,
+        .content = post_content,
+        .start_len = strlen(post_start),
+        .end_len = strlen(post_end),
+        .content_len = _welcome_mp3_len,
+    };
+
+    // http_client_set_post_field(client, post_data, strlen(post_data));
+
+    http_errors_t err = http_client_myperform(client, &post_data);
 
     if (err == HTTP_CLI_OK)
     {
@@ -154,7 +178,7 @@ static void test_post2()
     const char *filename = "text1.txt";
     int boundary_len = strlen(boundary);
     // int post_data_len = 2 + boundary_len + strlen(FILE_FORMAT_START) - 6 + strlen(content_disposition) + strlen(name) + strlen(filename) + 2 + strlen(post_data_content) + 2 + 2 + boundary_len + 2;
-    int post_data_len=strlen(MY_FORMAT)-6+ strlen(content_disposition)+strlen(name)+strlen(post_data_content)+1;
+    int post_data_len = strlen(MY_FORMAT) - 6 + strlen(content_disposition) + strlen(name) + strlen(post_data_content) + 1;
 
     const char *post_data = "field1=value1&field2=value2";
     // printf(post_data);
@@ -834,7 +858,7 @@ static void cmd_http_func(char *wbuf, int wbuf_len, int argc, char **argv)
     {
         test_post();
     }
-        else if (argc == 2 && strcmp(argv[1], "post2") == 0)
+    else if (argc == 2 && strcmp(argv[1], "post2") == 0)
     {
         test_post2();
     }

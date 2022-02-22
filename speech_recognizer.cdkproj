@@ -3,7 +3,7 @@
   <Description/>
   <MonitorProgress>
     <FlashOperate>267</FlashOperate>
-    <DebugLaunch>42</DebugLaunch>
+    <DebugLaunch>30</DebugLaunch>
   </MonitorProgress>
   <MergedToYaml>yes</MergedToYaml>
   <Dependencies Name="BuildSet"/>
@@ -257,15 +257,15 @@
   <Chips>
     <Chip ID="chip_ch2601" Version="v7.4.3" IsBasic="false" Path="Chips"/>
   </Chips>
+  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
   <DebugSessions>
-    <watchExpressions/>
+    <watchExpressions>_welcome_mp3:0;name:0</watchExpressions>
     <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;MHZ</statistics>
+    <statistics>;;32;;MHZ;</statistics>
     <peripheralTabs/>
     <WatchDisplayFormat>0</WatchDisplayFormat>
     <LocalDisplayFormat>0</LocalDisplayFormat>
     <debugLayout/>
     <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
-  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
 </Project>

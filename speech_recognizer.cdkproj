@@ -2,7 +2,7 @@
 <Project Name="speech_recognizer" Version="1">
   <Description/>
   <MonitorProgress>
-    <FlashOperate>267</FlashOperate>
+    <FlashOperate>241</FlashOperate>
     <DebugLaunch>30</DebugLaunch>
   </MonitorProgress>
   <MergedToYaml>yes</MergedToYaml>
@@ -259,7 +259,7 @@
   </Chips>
   <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
   <DebugSessions>
-    <watchExpressions>_welcome_mp3:0;name:0</watchExpressions>
+    <watchExpressions>_welcome_mp3:0;name:0;client-&gt;parser-&gt;data:0</watchExpressions>
     <memoryExpressions>;;;</memoryExpressions>
     <statistics>;;32;;MHZ;</statistics>
     <peripheralTabs/>

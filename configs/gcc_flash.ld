@@ -10,21 +10,19 @@
  ******************************************************************************/
 MEMORY
 {
-    SPIFLASH : ORIGIN = 0x18017000 , LENGTH = 0x69000   /* SPI-FLASH 256KB*/
-    SRAM     : ORIGIN = 0x08000000 , LENGTH = 0x10000   /* on-chip ISRAM 64KB*/
+    SPIFLASH : ORIGIN = 0x18017000 , LENGTH = 0x40000   /* SPI-FLASH 256KB*/
     DSRAM    : ORIGIN = 0x20000000 , LENGTH = 0x30000   /* on-chip DSRAM 192KB*/
+    SRAM     : ORIGIN = 0x08000000 , LENGTH = 0x10000   /* on-chip SRAM 64KB*/ 
 }
 
 __min_heap_size = 0x200;
-PROVIDE (__ram_start  = 0x20000000);
 PROVIDE (__ram_end  = 0x20030000);
-PROVIDE (__heap_start = __ram_start);
 PROVIDE (__heap_end = __ram_end);
 
 REGION_ALIAS("REGION_TEXT",    SPIFLASH);
 REGION_ALIAS("REGION_RODATA",  SPIFLASH);
 REGION_ALIAS("REGION_DATA",    SRAM);
-REGION_ALIAS("REGION_BSS",     SRAM);
+REGION_ALIAS("REGION_BSS",     DSRAM);
 
 ENTRY(Reset_Handler)
 SECTIONS
@@ -160,6 +158,7 @@ SECTIONS
   . = ALIGN(0x4) ;
   *(.stack*)
   . = ALIGN(0x4) ;
+  __heap_start = .;
   . += __min_heap_size;
   . = ALIGN(0x4) ;
  } > REGION_BSS AT > REGION_BSS

@@ -35,7 +35,7 @@ int main(void)
 {
     board_yoc_init();
 
-    player_init();
+    // player_init();
 
     cli_reg_cmd_player();
 

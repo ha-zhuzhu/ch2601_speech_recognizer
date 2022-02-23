@@ -13,7 +13,7 @@ extern "C" {
 
 int cli_reg_cmd_player(void);
 
-player_t *get_player_demo();
+// player_t *get_player_demo();
 
 #ifdef __cplusplus
 }

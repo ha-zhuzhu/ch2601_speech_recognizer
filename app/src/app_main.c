@@ -12,13 +12,17 @@
 #include <board.h>
 #include "player_demo.h"
 
+#include "lvgl.h"
+#include "lv_label.h"
+
 #include "app_main.h"
 
 #define TAG "APP"
 
 static void network_event(uint32_t event_id, const void *param, void *context)
 {
-    switch(event_id) {
+    switch (event_id)
+    {
     case EVENT_NETMGR_GOT_IP:
         LOGD(TAG, "net got ip");
         break;
@@ -35,9 +39,7 @@ int main(void)
 {
     board_yoc_init();
 
-    // player_init();
-
-    cli_reg_cmd_player();
+    cli_reg_cmd_asr();
 
     /* Subscribe */
     event_subscribe(EVENT_NETMGR_GOT_IP, network_event, NULL);

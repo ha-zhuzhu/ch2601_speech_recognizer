@@ -5,19 +5,24 @@
 #ifndef __PLAYER_DEMO_H__
 #define __PLAYER_DEMO_H__
 
-#include <player.h>
-
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
+    /* 发送录音文件 */
+    static void post_audio();
 
-int cli_reg_cmd_player(void);
+    /* 录音 */
+    static void cmd_mic_handler();
 
-// player_t *get_player_demo();
+    /* 录音任务 */
+    static void mic_task(void *arg);
+    static void cmd_http_func(char *wbuf, int wbuf_len, int argc, char **argv);
+    static void cmd_mic_func(char *wbuf, int wbuf_len, int argc, char **argv);
+    int cli_reg_cmd_asr(void);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* __PLAYER_DEMO_H__ */
-

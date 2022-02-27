@@ -86,9 +86,13 @@ solutions_cb5654/Makefile
 # **/Packages
 **/debug_notes
 **/test
+**/myweb_code
 
 speech_recognizer.cdkws
 speech_recognizer.tags
 speech_recognizer.mk
 speech_recognizer.txt
 cdkws.mk
+configs/gcc_flash_my.ld
+.gitignore
+configs/gcc_flash_bk.ld

@@ -1635,6 +1635,17 @@ bool http_client_is_chunked_response(http_client_handle_t client)
     return client->response->is_chunked;
 }
 
+int http_client_get_response_raw_data(http_client_handle_t client, char **raw_data)
+{
+    int raw_len=client->response->buffer->raw_len;
+    if (raw_len)
+    {
+        *raw_data=client->response->buffer->raw_data;
+        return raw_len;
+    }
+    return 0;
+}
+
 http_client_transport_t http_client_get_transport_type(http_client_handle_t client)
 {
     if (!strcasecmp(client->connection_info.scheme, "https"))

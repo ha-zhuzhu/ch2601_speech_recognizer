@@ -2,7 +2,7 @@
 <Project Name="speech_recognizer" Version="1">
   <Description/>
   <MonitorProgress>
-    <FlashOperate>241</FlashOperate>
+    <FlashOperate>234</FlashOperate>
     <DebugLaunch>30</DebugLaunch>
   </MonitorProgress>
   <MergedToYaml>yes</MergedToYaml>
@@ -13,6 +13,48 @@
   <VendorInfo>
     <VendorName>NULL</VendorName>
   </VendorInfo>
+  <Packages>
+    <Package ID="amrnb" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="amrwb" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="aos" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="aos_hal" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="at" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="av" Version="v7.4.4" IsBasic="false" Path="Packages"/>
+    <Package ID="cli" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="csi" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="drivers" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="drv_snd_ch2601" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="drv_wifi_at_w800" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="flac" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="hal_csi" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="kv" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="lvgl" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="mbedtls" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="minialsa" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="netmgr" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="newlib" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="opus" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="partition" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="pvmp3dec" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="rhino" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="rhino_arch" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="rhino_pwrmgmt" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="sal" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="sec_crypto" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="sonic" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="speex" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="speexdsp" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="ulog" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="uservice" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+    <Package ID="vfs" Version="v7.4.3" IsBasic="false" Path="Packages"/>
+  </Packages>
+  <Boards>
+    <Board ID="ch2601_evb" Version="v7.4.3" IsBasic="false" Path="Boards"/>
+  </Boards>
+  <Chips>
+    <Chip ID="chip_ch2601" Version="v7.4.3" IsBasic="false" Path="Chips"/>
+  </Chips>
+  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -216,50 +258,8 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <Packages>
-    <Package ID="amrnb" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="amrwb" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="aos" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="aos_hal" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="at" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="av" Version="v7.4.4" IsBasic="false" Path="Packages"/>
-    <Package ID="cli" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="csi" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="drivers" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="drv_snd_ch2601" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="drv_wifi_at_w800" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="flac" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="hal_csi" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="kv" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="lvgl" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="mbedtls" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="minialsa" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="netmgr" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="newlib" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="opus" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="partition" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="pvmp3dec" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="rhino" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="rhino_arch" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="rhino_pwrmgmt" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="sal" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="sec_crypto" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="sonic" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="speex" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="speexdsp" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="ulog" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="uservice" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-    <Package ID="vfs" Version="v7.4.3" IsBasic="false" Path="Packages"/>
-  </Packages>
-  <Boards>
-    <Board ID="ch2601_evb" Version="v7.4.3" IsBasic="false" Path="Boards"/>
-  </Boards>
-  <Chips>
-    <Chip ID="chip_ch2601" Version="v7.4.3" IsBasic="false" Path="Chips"/>
-  </Chips>
-  <PackPathes>$(ProjectPath)/../../components|$(ProjectPath)/../../boards|$(ProjectPath)/Boards|$(ProjectPath)/Chips|$(ProjectPath)/Packages|</PackPathes>
   <DebugSessions>
-    <watchExpressions>_welcome_mp3:0;name:0;client-&gt;parser-&gt;data:0</watchExpressions>
+    <watchExpressions>_welcome_mp3:0;name:0;client-&gt;parser-&gt;data:0;raw_data_p:1;result:1;result_len:0;raw_data_p:0</watchExpressions>
     <memoryExpressions>;;;</memoryExpressions>
     <statistics>;;32;;MHZ;</statistics>
     <peripheralTabs/>

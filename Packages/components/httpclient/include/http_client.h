@@ -258,6 +258,15 @@ extern "C"
     int http_client_get_post_field(http_client_handle_t client, char **data);
 
     /**
+     * @brief      Get raw data from response
+     *
+     * @param[in]  client      The client
+     * @param[out] raw_data    Point to raw data pointer
+     *
+     * @return     0
+     */
+    int http_client_get_response_raw_data(http_client_handle_t client, char **raw_data);
+    /**
      * @brief      Set http request header, this function must be called after http_client_init and before any
      *             perform function
      *

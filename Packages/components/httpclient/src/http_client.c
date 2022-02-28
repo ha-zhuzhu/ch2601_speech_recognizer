@@ -1443,16 +1443,19 @@ static web_err_t http_client_request_send(http_client_handle_t client, int write
 
 static web_err_t http_client_send_post_data(http_client_handle_t client)
 {
+    // 此时请求头应发送完毕
     if (client->state != HTTP_STATE_REQ_COMPLETE_HEADER)
     {
         LOGE(TAG, "Invalid state");
         return WEB_ERR_INVALID_STATE;
     }
+    // 没有要发送的 post_data 直接返回（包括其它请求）
     if (!(client->post_data && client->post_len))
     {
         goto success;
     }
 
+    // 发送 post_data
     int wret = http_client_write(client, client->post_data + client->data_written_index, client->data_write_left);
     if (wret < 0)
     {
@@ -1463,6 +1466,7 @@ static web_err_t http_client_send_post_data(http_client_handle_t client)
     // 在 request send 里面 data_written_index 最后被赋值为 0
     client->data_written_index += wret;
 
+    // 发送完毕
     if (client->data_write_left <= 0)
     {
         goto success;
@@ -1473,22 +1477,26 @@ static web_err_t http_client_send_post_data(http_client_handle_t client)
     }
 
 success:
+    // 更新状态
     client->state = HTTP_STATE_REQ_COMPLETE_DATA;
     return WEB_OK;
 }
 
 static web_err_t http_client_mysend_post_data(http_client_handle_t client, my_post_data_t *post_data)
 {
+    // 此时请求头应发送完毕
     if (client->state != HTTP_STATE_REQ_COMPLETE_HEADER)
     {
         LOGE(TAG, "Invalid state");
         return WEB_ERR_INVALID_STATE;
     }
+    // 没有要发送的 post_data 直接返回（包括其它请求）
     if (!(post_data->content && client->post_len))
     {
         goto success;
     }
 
+    // 发送请求体头部
     int wret = http_client_write(client, post_data->start, post_data->start_len);
     if (wret < 0)
     {
@@ -1496,6 +1504,7 @@ static web_err_t http_client_mysend_post_data(http_client_handle_t client, my_po
     }
     client->data_write_left -= wret;
 
+    // 发送音频数据，可能发送多次
     int content_idx = 0;
     for (int i = 0; i < post_data->content_len / MY_BODY_SIZE; ++i)
     {
@@ -1514,6 +1523,7 @@ static web_err_t http_client_mysend_post_data(http_client_handle_t client, my_po
     }
     client->data_write_left -= wret;
 
+    // 发送请求体尾部
     wret = http_client_write(client, post_data->end, post_data->end_len);
     if (wret < 0)
     {
@@ -1521,6 +1531,7 @@ static web_err_t http_client_mysend_post_data(http_client_handle_t client, my_po
     }
     client->data_write_left -= wret;
 
+    // 发送完毕
     if (client->data_write_left <= 0)
     {
         goto success;
@@ -1531,6 +1542,7 @@ static web_err_t http_client_mysend_post_data(http_client_handle_t client, my_po
     }
 
 success:
+    // 更新状态
     client->state = HTTP_STATE_REQ_COMPLETE_DATA;
     return WEB_OK;
 }
@@ -1587,9 +1599,10 @@ web_err_t http_client_close(http_client_handle_t client)
 web_err_t http_client_set_post_field(http_client_handle_t client, const char *data, int len)
 {
     web_err_t err = WEB_OK;
-    client->post_data = (char *)data;
-    client->post_len = len;
+    client->post_data = (char *)data; // 待发送数据指针
+    client->post_len = len;           // 待发送数据长度
     LOGD(TAG, "set post file length = %d", len);
+    // 如果此前没有设置 Content-Type，则设置为 application/x-www-form-urlencoded
     if (client->post_data)
     {
         char *value = NULL;
@@ -1637,10 +1650,10 @@ bool http_client_is_chunked_response(http_client_handle_t client)
 
 int http_client_get_response_raw_data(http_client_handle_t client, char **raw_data)
 {
-    int raw_len=client->response->buffer->raw_len;
+    int raw_len = client->response->buffer->raw_len;
     if (raw_len)
     {
-        *raw_data=client->response->buffer->raw_data;
+        *raw_data = client->response->buffer->raw_data;
         return raw_len;
     }
     return 0;
